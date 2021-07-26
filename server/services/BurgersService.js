@@ -16,7 +16,15 @@ class BurgersService {
 
   create(body) {
     fakeDb.burgers.push(body)
-    return body
+    return (body)
+  }
+
+  delete(id) {
+    const index = fakeDb.burgers.findIndex(b => b.id.toString() === id)
+    if (index == -1) {
+      throw new BadRequest('Invalid Burger ID')
+    }
+    fakeDb.burgers.splice(index, 1)
   }
 }
 
